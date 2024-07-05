@@ -2,47 +2,45 @@
 
 {% block title %}
     Welcome
-{% endblock  %} 
-   
+{% endblock %}
 
 {% block content %}
-    <div class="mt-6 px-6 py-12 bg-gray-100">
-        <h2 class="mb-12 text-center">Newest Items</h2>
-
-        <div class="grid grid-cols-3 gap-3">
-        {% for item in items %}
-        <div>
-        <a href="{% url 'item:detail' item.id %}">
-        <div>
-        <img src="{{ item.image.url }}" class="rounded-t-xl" style="width: 200px; height: 200px;">
-        </div>
-
-        <div class="p-6 bg-white">
-            <h2>{{item.description}}</h2>
-            <p class="text-gray-500">Price:{{item.price}}</p>
-        </div>
-
-        </a>
-        </div>
-    {% endfor %} 
-      </div>
-    </div>
-
-    <div class="mt-6 px-6 py-12 bg-gray-100">
-        <h2 class="mb-12 text-center">Categories</h2>
-
-        <div class="grid grid-cols-3 gap-3">
-        {% for category in categories %}
-            <div>
-                <a href="#"> 
-                <div class="p-6 bg-white">
-                    <h2>{{category.name}}</h2>
-                    <p class="text-gray-500">{{category.items.count}} items</p>
-                </div>
-
+<div class="container mt-5">
+    <div class="mb-5 p-4 bg-light rounded shadow">
+        <h2 class="text-center mb-4">Newest Items</h2>
+        <div class="row">
+            {% for item in items %}
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'item:detail' item.id %}" class="text-decoration-none">
+                    <div class="card h-100">
+                        <img src="{{ item.image.url }}" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.description }}</h5>
+                            <p class="card-text text-muted">Price: ${{ item.price }}</p>
+                        </div>
+                    </div>
                 </a>
             </div>
-        
-        {% endfor %} 
+            {% endfor %}
         </div>
-{% endblock  %} 
+    </div>
+
+    <div class="mt-5 p-4 bg-light rounded shadow">
+        <h2 class="text-center mb-4">Categories</h2>
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-4 mb-4">
+                <a href="#" class="text-decoration-none">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="card-text text-muted">{{ category.items.count }} items</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

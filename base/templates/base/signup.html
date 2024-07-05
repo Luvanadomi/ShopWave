@@ -2,37 +2,51 @@
 
 {% block title %}
     Sign Up
-{% endblock  %} 
-   
+{% endblock %}
 
 {% block content %}
-    <div class="mx-auto bg-gray ">
-        <form method="post" action=".">
-        {% csrf_token %}
-        {{form.non_field_errors}}
-        <div>
-            <label>Username</label>
-            {{form.username}}
-        </div>
-        <div>
-            <label>Email</label>
-            {{form.email}}
-        </div>
-        <div>
-            <label>Password</label>
-            {{form.password1}}
-        </div>
-        <div>
-            <label>Repeat Password </label>
-            {{form.password2}}
-        </div>
-        {% if form.errors or form.non_field_errors %}
-            <div class="mb-3">
-                {% for field in form %}
-                    {{field.errors}}
-                {% endfor %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-light shadow rounded">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Sign Up</h2>
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username</label>
+                            {{ form.username|add_class:"form-control" }}
+                            {% for error in form.username.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Email</label>
+                            {{ form.email|add_class:"form-control" }}
+                            {% for error in form.email.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password1" class="form-label">Password</label>
+                            {{ form.password1|add_class:"form-control" }}
+                            {% for error in form.password1.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password2" class="form-label">Repeat Password</label>
+                            {{ form.password2|add_class:"form-control" }}
+                            {% for error in form.password2.errors %}
+                                <div class="invalid-feedback d-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block py-2">Submit</button>
+                    </form>
+                </div>
             </div>
-        {% endif %}
-        <button class="py-4 px-8 ">Submit</button>
-        </form>
-{% endblock  %} 
+        </div>
+    </div>
+</div>
+{% endblock %}
