@@ -11,7 +11,6 @@
             <h1 class="mb-4">{{ item.description }}</h1>
             <p class="text-muted mb-2"><strong>Price:</strong> ${{ item.price }}</p>
             <p class="text-muted mb-4"><strong>Seller:</strong> {{ item.created_by.username }}</p>
-            <a href="#" class="btn btn-primary mb-3">Contact Seller</a>
             
             {% if request.user == item.created_by %}
             <div class="mt-4 p-4 bg-white border rounded">
@@ -20,7 +19,7 @@
                 <a href="{% url 'item:edit' item.id %}" class="btn btn-secondary">Edit</a>
             </div>
             {% else %}
-            <a href="#" class="btn btn-primary">Contact Seller</a>
+            <a href="{% url 'inbox:new' item.id %}" class="btn btn-primary">Contact Seller</a>
             {% endif %}
         </div>
     </div>
