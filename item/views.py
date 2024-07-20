@@ -35,6 +35,7 @@ def detail(request,pk):
 
    
                   })
+
 logger = logging.getLogger(__name__)
 @login_required
 def new(request):

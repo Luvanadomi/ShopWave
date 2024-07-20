@@ -20,7 +20,7 @@
         <p class="font-semibold">Categories</p>
        <ul class="list-group">
             {% for category in categories %}
-                <li class="list-group-item py-2 px-2{% if category.id == category_id %} bg-gray-100 {% endif %}">
+                <li class="list-group-item py-2 px-2 bg-gray-100">
                       <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}">{{ category.name }}</a>
                  </li>
             {% endfor %}
